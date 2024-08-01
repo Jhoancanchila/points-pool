@@ -10,9 +10,9 @@ export const Input = ({ inputValue,setValueInput }) => {
 
   return (
     <div className='container'>
-      <input className='input' type='number'    placeholder='MALAS' 
+      <input className='input' type='number'        placeholder='MALAS' 
       onChange={handleChanges}
-      value={inputValue}
+      value={inputValue === 0 ? '' : inputValue}
       />
     </div>
   )
