@@ -2,9 +2,33 @@
   max-width: 320px;
   padding: 2rem 0;
 }
-.container__input{
+.input{
   width: 100%;
   padding: 16px 5px;
   border-radius: 7px;
   outline: none;
+  border: none;
+}
+
+/* Estilos para quitar los spinners en navegadores WebKit (Chrome, Safari) */
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Estilos para quitar los spinners en Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/* Clase para aplicar los estilos */
+.input::-webkit-outer-spin-button,
+.input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.input {
+  -moz-appearance: textfield;
 }

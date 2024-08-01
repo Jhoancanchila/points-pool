@@ -2,29 +2,38 @@ import React, { useEffect, useState } from 'react'
 import { Input } from '../Input/Input'
 import { Ball } from '../Ball/Ball'
 
-export const Game = ({ title, ballList }) => {
+export const GameOur = ({ title, ballList, setDataBalls, resetApp, setResetApp }) => {
 
-  const [data, setData] = useState(ballList)
   const [value, setValue] = useState(0)
   const [total, setTotal] = useState(0)
   const [totalPointsBalls, setTotalPointsBalls] = useState(0)
 
   const handleActiveBall = ( number ) => {
 
-    const newData = data.map(ball => {
+    const newData = ballList.map(ball => {
       if (ball.number === number) {
         return {
           ...ball,
-          isActived: !ball.isActived
+          isActived: !ball.isActived,
+          team: !ball.isActived ? 'OUR' : 'THEIR'
         }
       }else{
         return ball
       }
     })
-    setData(newData);
+    setDataBalls(newData);
     const totalBalls = newData.filter(ball => ball.isActived).reduce((acc, ball) => acc + ball.count, 0);
     setTotalPointsBalls(totalBalls);
   };
+
+  useEffect(() => {
+    if (resetApp) {
+      setValue(0)
+      setTotalPointsBalls(0)
+      setTotal(0)
+      setResetApp(false)
+    }
+  }, [resetApp])
 
   useEffect(() => {    
     const totalPoints = totalPointsBalls - value;
@@ -36,7 +45,7 @@ export const Game = ({ title, ballList }) => {
       <h1>{ `${ title } ${ total } puntos` }</h1>
       <div className='container__our'>
         {
-          data.map(ball => (
+          ballList.map(ball => (
             <Ball key={ball.number} {...ball } functionSelected={handleActiveBall}/>
           ))
         }
