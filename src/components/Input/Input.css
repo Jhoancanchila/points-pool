@@ -1,0 +1,10 @@
+.container{
+  max-width: 320px;
+  padding: 2rem 0;
+}
+.container__input{
+  width: 100%;
+  padding: 16px 5px;
+  border-radius: 7px;
+  outline: none;
+}
